@@ -1,3 +1,6 @@
+require 'redmine'
+require_relative 'lib/redmine_customize_core_fields/hooks'
+
 Redmine::Plugin.register :redmine_customize_core_fields do
   name 'Redmine Customize Core Fields plugin'
   author 'Vincent ROBERT'
@@ -14,12 +17,4 @@ Redmine::Plugin.register :redmine_customize_core_fields do
   settings :default => {'override_issue_form' => 'false',
                         'display_custom_fields_first' => 'true'},
            :partial => 'settings/redmine_plugin_customize_core_fields'
-end
-
-# Custom patches
-require_dependency 'redmine_customize_core_fields/hooks'
-Rails.application.config.to_prepare do
-  require_dependency 'redmine_customize_core_fields/issue_patch'
-  require_dependency 'redmine_customize_core_fields/journal_patch'
-  require_dependency 'redmine_customize_core_fields/query_patch'
 end
